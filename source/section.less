@@ -1,0 +1,32 @@
+.b-section {
+
+  &__content {
+
+	& figure {
+
+	  &[left] {
+		float: left;
+		margin: 0 20px 0 0;
+		}
+
+	  &[right] {
+		float: right;
+		margin: 0 0 0 20px;
+		}
+	  }
+
+	& img {
+	  display: block;
+	  border: 1px solid @gray;
+	  max-width: 100%;
+	  }
+
+	& figcaption {
+	  margin-top: 1px;
+	  padding: 4px 8px;
+	  background: @default;
+	  font-size: 14px;
+	  color: @white;
+	  }
+	}
+  }

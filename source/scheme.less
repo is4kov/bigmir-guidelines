@@ -1,0 +1,255 @@
+@green: green;
+@blue: blue;
+@red: red;
+
+@global-dependencies-color: @red;
+@local-dependencies-color: @blue;
+@sublocal-dependencies-color: @green;
+
+@chain-width: 2px;
+
+@gap-x: 40px;
+
+@gap-y-default: 130px;
+@gap-y: 180px;
+
+@arrow-dimension-x: 16px;
+@arrow-dimension-y: 32px;
+
+.b-scheme {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+  align-items: center;
+  align-content: center;
+  width: 880px;
+  margin: auto;
+  padding: 40px 0;
+
+  &-inner {
+	}
+
+  &-row {
+	.transition;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	flex-wrap: nowrap;
+	align-items: center;
+	align-content: space-around;
+	width: 100%;
+	padding: 40px 0;
+	border-top: 2px dashed @default;
+	font-size: 28px;
+
+	&:first-child {
+	  border-top: 0;
+	  }
+
+	&__header {
+	  display: inline-block;
+	  width: 20%;
+	  margin-right: 5%;
+	  vertical-align: middle;
+	  font-size: 48px;
+	  }
+
+	&__main {
+	  display: flex;
+	  flex-direction: row;
+	  justify-content: space-between;
+	  align-items: stretch;
+	  align-content: center;
+	  width: 80%;
+	  vertical-align: middle;
+	  }
+
+	&__block {
+	  position: relative;
+	  display: flex;
+	  align-items: center;
+	  align-content: center;
+	  justify-content: center;
+	  width: 180px;
+	  padding: 10px;
+	  border: 2px solid @default;
+//	  background: @white;
+	  text-align: center;
+	  font-family: monospace;
+
+	  & span {
+		color: darken(@gray, 25%);
+		}
+
+	  &_important {
+		width: 260px;
+		font-size: 40px;
+		font-weight: bold;
+		}
+
+	  &_config {
+//		margin-left: 160px;
+		}
+
+	  &::before {
+		content: "";
+		position: absolute;
+		bottom: 50%;
+		right: 100%;
+		z-index: -1;
+		}
+
+	  &::after {
+		content: "";
+		position: absolute;
+		bottom: 50%;
+		right: 100%;
+		width: 0;
+		height: 0;
+		border-right: @arrow-dimension-x / 2 solid transparent;
+		border-bottom: @arrow-dimension-y solid;
+		border-left: @arrow-dimension-x / 2 solid transparent;
+
+		// by default
+
+		border-bottom-color: transparent;
+		}
+	  }
+
+	&_cdn &__block {
+	  margin-left: 0;
+	  }
+
+//	.level-chain;
+
+	&__dependency {
+	  position: absolute;
+	  z-index: -1;
+//	  outline: 1px dashed red;
+	  background: fadeout(yellow, 75%);
+	  }
+
+	&_global &__block_output {
+
+	  &::before {
+		left: 50%;
+		right: auto;
+		bottom: 100%;
+		width: 0;
+		height: 100px;
+		border-left: 2px solid @global-dependencies-color;
+		border-bottom: 2px solid @global-dependencies-color;
+		}
+
+	  &::after {
+		margin-bottom: 112px;
+		margin-right: calc(-50% - 4px);
+		border-bottom-color: @global-dependencies-color;
+		}
+	  }
+
+	&_global &__block_output &__dependency {
+	  width: 580px;
+	  height: 300px;
+	  right: -40px;
+	  bottom: 50%;
+	  border-right: 2px solid @global-dependencies-color;
+	  border-top: 2px solid @global-dependencies-color;
+
+	  &::before {
+		content: "";
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		height: 0;
+		width: 40px;
+		border-top: 2px solid @global-dependencies-color;
+		}
+
+	  &::after {
+		content: "";
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 0;
+		height: 60px;
+		border-left: 2px solid @global-dependencies-color;
+		}
+	  }
+
+	&_local &__block_output {
+
+	  &::before {
+		bottom: 70%;
+		width: 40px;
+		height: 330px;
+		border-left: 2px solid @local-dependencies-color;
+		border-bottom: 2px solid @local-dependencies-color;
+		}
+
+	  &::after {
+		margin-bottom: 318px;
+		margin-right: 33px;
+		border-bottom-color: @local-dependencies-color;
+		}
+	  }
+
+	&_local &__block_output &__dependency {
+	  width: 140px;
+	  height: 220px;
+	  right: 100%;
+	  bottom: 30%;
+	  margin-right: 120px;
+	  border-right: 2px solid @local-dependencies-color;
+	  border-top: 2px solid @local-dependencies-color;
+
+	  &::before {
+		content: "";
+		position: absolute;
+		left: 100%;
+		bottom: 0;
+		height: 0;
+		width: 120px;
+		border-top: 2px solid @local-dependencies-color;
+		}
+	  }
+
+	&_sublocal &__block_output {
+
+	  &::before {
+		bottom: 70%;
+		width: 60px;
+		height: 540px;
+		border-left: 2px solid @sublocal-dependencies-color;
+		border-bottom: 2px solid @sublocal-dependencies-color;
+		}
+
+	  &::after {
+		margin-bottom: 524px;
+		margin-right: 53px;
+		border-bottom-color: @sublocal-dependencies-color;
+		}
+	  }
+
+	&_sublocal &__block_output &__dependency {
+	  width: 180px;
+	  height: 220px;
+	  right: 100%;
+	  bottom: 30%;
+	  margin-right: 80px;
+	  border-right: 2px solid @sublocal-dependencies-color;
+	  border-top: 2px solid @sublocal-dependencies-color;
+
+	  &::before {
+		content: "";
+		position: absolute;
+		left: 100%;
+		bottom: 0;
+		height: 0;
+		width: 80px;
+		border-top: 2px solid @sublocal-dependencies-color;
+		}
+	  }
+	}
+  }
